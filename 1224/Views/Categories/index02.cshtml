@@ -1,0 +1,60 @@
+﻿@model IEnumerable<_1224.Models.EFModels.Category>
+
+@{
+    ViewBag.Title = "index02";
+}
+
+<h2>index02</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DisplayOrder)
+        </th>
+        <th>
+            商品明細
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DisplayOrder)
+        </td>
+        <td>
+            <table class="table table-bordered">
+                <tr class="active">
+                    <td width="490">品名</td>
+                    <td>單價</td>
+                </tr>
+
+                @foreach (var p in item.Products)
+                {
+                    <tr class="active">
+                        <td>@p.ProductName</td>
+                        <td>@p.UnitPrice</td>
+                    </tr>
+                }
+            </table>
+        </td>
+
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+        </td>
+    </tr>
+}
+
+</table>
